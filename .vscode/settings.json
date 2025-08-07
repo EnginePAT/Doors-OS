@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "stdint.h": "c",
+        "ports.h": "c",
+        "console.h": "c",
+        "keyboard.h": "c",
+        "isr.h": "c",
+        "string.h": "c",
+        "fat.h": "c",
+        "colors.h": "c"
+    }
+}
