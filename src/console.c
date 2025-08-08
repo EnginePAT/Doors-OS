@@ -88,6 +88,25 @@ void print(const char* str) {
     }
 }
 
+void print_uint(unsigned int num) {
+    char buffer[11]; // Enough for 32-bit uint max value + null
+    buffer[10] = '\0';
+    int i = 9;
+
+    if (num == 0) {
+        print("0");
+        return;
+    }
+
+    while (num > 0 && i >= 0) {
+        buffer[i] = '0' + (num % 10);
+        num /= 10;
+        i--;
+    }
+
+    print(&buffer[i + 1]);
+}
+
 void set_background_color(unsigned char bg_color, unsigned char fg_color) {
     unsigned short attribute = ((bg_color & 0xF) << 4) | (fg_color & 0xF);
     unsigned short blank = (attribute << 8) | 0x20;  // space char with attr

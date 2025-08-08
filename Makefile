@@ -21,12 +21,15 @@ IRQ_OBJ := $(BIN_DIR)/irq.o
 ISR_OBJ := $(BIN_DIR)/isr.o
 PORTS_OBJ := $(BIN_DIR)/ports.o
 KEYBOARD_OBJ := $(BIN_DIR)/keyboard.o
+MULTIBOOT2_OBJ := $(BIN_DIR)/multiboot2.o
+EXT2_OBJ := $(BIN_DIR)/ext2.o
 
 KERNEL_ELF := $(BIN_DIR)/kernel.elf
 
 # OBJ Files for the linker
 OBJS = $(BOOT_OBJ) $(KERNEL_OBJ) $(CONSOLE_OBJ) $(COLORS_OBJ) \
-       $(PORTS_OBJ) $(ISR_OBJ) $(IRQ_OBJ) $(KEYBOARD_OBJ)
+       $(PORTS_OBJ) $(ISR_OBJ) $(IRQ_OBJ) $(KEYBOARD_OBJ) $(MULTIBOOT2_OBJ) \
+	   $(EXT2_OBJ)
 
 .PHONY: clean all dirs build
 
@@ -60,6 +63,12 @@ $(PORTS_OBJ): $(SRC_DIR)/core/ports.c
 	$(CC) $(CFLAGS) $< -o $@
 
 $(KEYBOARD_OBJ): $(SRC_DIR)/keyboard.c
+	$(CC) $(CFLAGS) $< -o $@
+
+$(MULTIBOOT2_OBJ): $(SRC_DIR)/core/multiboot2.c
+	$(CC) $(CFLAGS) $< -o $@
+
+$(EXT2_OBJ): $(SRC_DIR)/core/ext2.c
 	$(CC) $(CFLAGS) $< -o $@
 
 # Linker
